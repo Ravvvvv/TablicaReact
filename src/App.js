@@ -1,6 +1,6 @@
 
 import './App.css';
-import Array from './components/Array';
+import Dictionary from './components/Dictionary';
 
 
 
@@ -8,7 +8,7 @@ import Array from './components/Array';
 function App() {
   return (
     <div className="App">
-      <Array />
+      <Dictionary />
 
     </div>
   );
