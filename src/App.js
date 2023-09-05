@@ -1,13 +1,22 @@
 
+import { useState } from 'react';
 import './App.css';
 import Dictionary from './components/Dictionary';
 
 
 
 
-function App() {
+function App(props) {
+
+
+
+
+  
+
+
   return (
     <div className="App">
+
       <Dictionary />
 
     </div>
@@ -15,3 +24,4 @@ function App() {
 }
 
 export default App;
+
