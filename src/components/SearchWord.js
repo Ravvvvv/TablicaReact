@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react'
 import './SearchWord.css'
-import Dictionary from './Dictionary'
 
 
 const SearchWord = (props) => {
@@ -11,7 +10,10 @@ const SearchWord = (props) => {
                 <label htmlFor="searchWord"></label>
                 Szukaj: <input type='text'
                     id='searchWord'
-                    onFocus={props.setItemListAfter}
+                    onFocus={props.showList}
+                    //focus z propsem showlist 
+                    value={props.autoWord}
+                    //   atrybyt value z propsautword
                     onChange={(e) => props.filterWord(e.target.value)} />
             </form>
         </div>
