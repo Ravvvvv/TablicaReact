@@ -24,6 +24,11 @@ function Dictionary(props) {
   const [autoWord, setAutoWord] = useState('')
   // stan, który będzie przechowywał wartość pola serachword
 
+
+  
+
+
+
   const filterWord = (searchValue) => {
     console.log(searchValue);
     if (searchValue === '') {
@@ -57,7 +62,7 @@ function Dictionary(props) {
     <div className="app">
       <h1>Szukaj wyrazu</h1>
       <SearchWord filterWord={filterWord} showList={showList} autoWord={autoWord} />
-      
+
       {listShow && ( // Wyświetl listę tylko gdy showList jest true
         <ul>
           {itemListAfter.map((item, index) => (
