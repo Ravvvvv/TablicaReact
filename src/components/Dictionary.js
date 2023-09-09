@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SearchWord from './SearchWord';
+import FormAdd from './FormAdd';
 
 function Dictionary(props) {
   const [itemList, setItemList] = useState([
@@ -25,7 +26,19 @@ function Dictionary(props) {
   // stan, który będzie przechowywał wartość pola serachword
 
 
-  
+
+  const [newDefinition, setNewDefinition] = useState('')
+  // stan ktory przechwuje katualan definicje
+
+  const [noweDefinicje, setNoweDefinicje] = useState('')
+
+
+  const findDefinition = (searchValue) => {
+    findDefinition(searchValue)
+    const showDefinition = itemList.find((item) => item.word.toLowerCase().includes(searchValue.toLowerCase()));
+  };
+  //funkcja ktora odpowiada za definicje slow przekazan do searchword
+
 
 
 
@@ -41,6 +54,9 @@ function Dictionary(props) {
     const filterWordData = itemList.filter(item => item.word.toLowerCase().includes(searchValue.toLowerCase())
     );
 
+    setNoweDefinicje(setNoweDefinicje)
+    setNewDefinition(addDefinition)
+    //aktulany nowy stan
     setAutoWord(searchValue)
     setItemListAfter(filterWordData);
   }
@@ -56,13 +72,33 @@ function Dictionary(props) {
   //stala completeField z atrubytem autoCompletWord ktora jest uzywana po klikniecu na input.
   // Click zadzaial klikajac na item.word czyli slowa kotre sa  w itemList.
 
+  const addDefinition = (newDefinition) => {
+
+    const updateWordDefinition = [...itemList, newDefinition];
+    //s tworz nowa tablice plus do kotrej wstaw kopie tablicy i koljeny ktory jest przekazwyny  do funkcji (parametr argument)
+    setItemList(updateWordDefinition)
+    setItemListAfter(updateWordDefinition)
+
+    localStorage.setItem('word', JSON.stringify(updateWordDefinition))
+
+    const newLIstLocalStorage = JSON.parse(localStorage.getItem('word')) || [];
+
+    newLIstLocalStorage.forEach(word => {
+      console.log(word)
+    });
+
+  }
+  //updateworddefi dodac do localStorage
+
+
 
   return (
 
     <div className="app">
       <h1>Szukaj wyrazu</h1>
-      <SearchWord filterWord={filterWord} showList={showList} autoWord={autoWord} />
-
+      <SearchWord filterWord={filterWord} showList={showList} autoWord={autoWord} findDefinition={findDefinition} />
+      <button >Pokaz definicje</button>
+      <FormAdd addDefinition={addDefinition} />
       {listShow && ( // Wyświetl listę tylko gdy showList jest true
         <ul>
           {itemListAfter.map((item, index) => (
