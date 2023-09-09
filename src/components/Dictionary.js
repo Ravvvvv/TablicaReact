@@ -28,7 +28,7 @@ function Dictionary(props) {
 
 
   const [newDefinition, setNewDefinition] = useState('')
-  // stan ktory przechwuje katualan definicje
+  // stan ktory przechwuje aktualan definicje
 
   const [noweDefinicje, setNoweDefinicje] = useState('')
 
@@ -36,6 +36,7 @@ function Dictionary(props) {
   const findDefinition = (searchValue) => {
     findDefinition(searchValue)
     const showDefinition = itemList.find((item) => item.word.toLowerCase().includes(searchValue.toLowerCase()));
+    // setNoweDefinicje(showDefinition ? showDefinition.definition : 'nie ma')
   };
   //funkcja ktora odpowiada za definicje slow przekazan do searchword
 
@@ -53,10 +54,9 @@ function Dictionary(props) {
     }
     const filterWordData = itemList.filter(item => item.word.toLowerCase().includes(searchValue.toLowerCase())
     );
-
-    setNoweDefinicje(setNoweDefinicje)
+    setNoweDefinicje(findDefinition);
     setNewDefinition(addDefinition)
-    //aktulany nowy stan
+    //aktulanne definicje
     setAutoWord(searchValue)
     setItemListAfter(filterWordData);
   }
@@ -79,9 +79,11 @@ function Dictionary(props) {
     setItemList(updateWordDefinition)
     setItemListAfter(updateWordDefinition)
 
-    localStorage.setItem('word', JSON.stringify(updateWordDefinition))
 
+    localStorage.setItem('words', JSON.stringify(updateWordDefinition))
+    // dodawanie po kliknieciu do localstorage i zmieninie go na stringa
     const newLIstLocalStorage = JSON.parse(localStorage.getItem('word')) || [];
+    // odczytanie  z local storage i parsowanie aby moc odczytac stringa oraz sprawdzamy czy jest tablica czy nie jesli nie  to daj pusta tablice
 
     newLIstLocalStorage.forEach(word => {
       console.log(word)

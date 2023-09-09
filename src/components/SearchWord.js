@@ -7,9 +7,18 @@ import './SearchWord.css'
 
 
 const SearchWord = (props) => {
+    const [szukanaDefinicja, setSzukanaDefinicja] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        props.findDefinition(szukanaDefinicja);
+    };
+
+    //obsluga zdarzenia onsubmit fukncja wywola
+
     return (
         <div className='searchWord'>
-            <form >
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="searchWord"></label>
                 Szukaj: <input type='text'
                     id='searchWord'
@@ -18,9 +27,9 @@ const SearchWord = (props) => {
                     value={props.autoWord}
                     //   atrybyt value z propsautword
                     onChange={(e) => props.filterWord(e.target.value)}
-                    onSubmit={(e)=>props.findDefinition(e.target.value)}
+
                 />
-          
+                {szukanaDefinicja}
             </form>
         </div>
     )
