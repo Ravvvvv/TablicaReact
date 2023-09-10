@@ -9,16 +9,14 @@ import './SearchWord.css'
 const SearchWord = (props) => {
     const [szukanaDefinicja, setSzukanaDefinicja] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        props.findDefinition(szukanaDefinicja);
+    const handleInputChange = (e) => {
+
+
+
     };
-
-    //obsluga zdarzenia onsubmit fukncja wywola
-
     return (
         <div className='searchWord'>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleInputChange}>
                 <label htmlFor="searchWord"></label>
                 Szukaj: <input type='text'
                     id='searchWord'
@@ -29,7 +27,8 @@ const SearchWord = (props) => {
                     onChange={(e) => props.filterWord(e.target.value)}
 
                 />
-                {szukanaDefinicja}
+
+                <p> </p>
             </form>
         </div>
     )

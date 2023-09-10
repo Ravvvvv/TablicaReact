@@ -34,9 +34,9 @@ function Dictionary(props) {
 
 
   const findDefinition = (searchValue) => {
-    findDefinition(searchValue)
+
     const showDefinition = itemList.find((item) => item.word.toLowerCase().includes(searchValue.toLowerCase()));
-    // setNoweDefinicje(showDefinition ? showDefinition.definition : 'nie ma')
+    setNoweDefinicje(showDefinition ? showDefinition.definition : 'nie ma')
   };
   //funkcja ktora odpowiada za definicje slow przekazan do searchword
 
@@ -80,7 +80,7 @@ function Dictionary(props) {
     setItemListAfter(updateWordDefinition)
 
 
-    localStorage.setItem('words', JSON.stringify(updateWordDefinition))
+    localStorage.setItem('word', JSON.stringify(updateWordDefinition))
     // dodawanie po kliknieciu do localstorage i zmieninie go na stringa
     const newLIstLocalStorage = JSON.parse(localStorage.getItem('word')) || [];
     // odczytanie  z local storage i parsowanie aby moc odczytac stringa oraz sprawdzamy czy jest tablica czy nie jesli nie  to daj pusta tablice
@@ -88,6 +88,7 @@ function Dictionary(props) {
     newLIstLocalStorage.forEach(word => {
       console.log(word)
     });
+
 
   }
   //updateworddefi dodac do localStorage
@@ -107,7 +108,10 @@ function Dictionary(props) {
             <li key={index} onClick={() => { completeField(item.word) }} >Word: {item.word}  </li>
           ))}
         </ul>
+
       )}
+      <div>Definicja: {setNoweDefinicje}</div>
+
 
     </div>
   );
