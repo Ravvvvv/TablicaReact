@@ -25,22 +25,15 @@ function Dictionary(props) {
   const [autoWord, setAutoWord] = useState('')
   // stan, który będzie przechowywał wartość pola serachword
 
-
-
   const [newDefinition, setNewDefinition] = useState('')
   // stan ktory przechwuje aktualan definicje
-
-  const [noweDefinicje, setNoweDefinicje] = useState('')
-
 
   const findDefinition = (searchValue) => {
 
     const showDefinition = itemList.find((item) => item.word.toLowerCase().includes(searchValue.toLowerCase()));
-    setNoweDefinicje(showDefinition ? showDefinition.definition : 'nie ma')
+    setNewDefinition(showDefinition.definition)
   };
   //funkcja ktora odpowiada za definicje slow przekazan do searchword
-
-
 
 
   const filterWord = (searchValue) => {
@@ -54,8 +47,8 @@ function Dictionary(props) {
     }
     const filterWordData = itemList.filter(item => item.word.toLowerCase().includes(searchValue.toLowerCase())
     );
-    setNoweDefinicje(findDefinition);
-    setNewDefinition(addDefinition)
+    // setNoweDefinicje(findDefinition);
+
     //aktulanne definicje
     setAutoWord(searchValue)
     setItemListAfter(filterWordData);
@@ -89,7 +82,6 @@ function Dictionary(props) {
       console.log(word)
     });
 
-
   }
   //updateworddefi dodac do localStorage
 
@@ -100,7 +92,7 @@ function Dictionary(props) {
     <div className="app">
       <h1>Szukaj wyrazu</h1>
       <SearchWord filterWord={filterWord} showList={showList} autoWord={autoWord} findDefinition={findDefinition} />
-      <button >Pokaz definicje</button>
+
       <FormAdd addDefinition={addDefinition} />
       {listShow && ( // Wyświetl listę tylko gdy showList jest true
         <ul>
@@ -108,10 +100,8 @@ function Dictionary(props) {
             <li key={index} onClick={() => { completeField(item.word) }} >Word: {item.word}  </li>
           ))}
         </ul>
-
       )}
-      <div>Definicja: {setNoweDefinicje}</div>
-
+      <h2>{newDefinition}</h2>
 
     </div>
   );
